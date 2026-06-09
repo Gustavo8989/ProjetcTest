@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+         *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body{
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*background: linear-gradient(135deg, #155c00);*/
+      }
+      .conteiner{
+        width: 100%;
+        max-width: 400px;
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        text-align: center;
+      }
+      h1{
+        margin-bottom: 25px;
+        color: #333;
+        font-size: 26px;
+      }
+      input{
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: 0.3s;
+      }
+      input:focus{
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 8px rgba(102,126,234,0.4);
+      }
+      button{
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #667eea;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover{
+        background: #5563d6;
+        transform: translateY(-2px);
+      }
+
+      button:active{
+        transform: translateY(0);
+      }
+
+      @media (max-width: 480px){
+        .conteiner{
+          margin: 20px;
+          padding: 30px;
+        }
+
+        h1{
+          font-size: 22px;
+        }
+      }
+      .criar-conta{
+        display: block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #667eea;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    .criar-conta:hover{
+        color: #5563d6;
+        text-decoration: underline;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="conteiner">
+      <h1>Validando Email e Senha</h1> 
+      <input type="text" id="email" placeholder="Email">
+      <input type="password" id="senha" placeholder="Senha">
+      <button id="Enviar">Login</button> 
+      <a href="" class="criar-conta">Criar Conta</a>
+      
+    </div>
+
+    <script>
+        // Criando um validação simples de Email
+        document.getElementById("Enviar").addEventListener("click",function(){
+            var email = document.getElementById("email").value
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
+            if(!(regex.test(email))){
+                // Deixar mais bonitinho
+                alert("Email invalido")
+            }
+            else{
+                window.location.href="file:///c%3A/Users/gusta/OneDrive/%C3%81rea%20de%20Trabalho/IA/Bots/ProjetcTest/solicitacao/pagina_inicial.html"
+            }
+        })
+        
+    </script>
+  </body>
+</html>
