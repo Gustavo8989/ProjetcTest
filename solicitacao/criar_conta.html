@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .cartao_cadastro{
+        background: white;
+        width: 400px;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .cartao_cadastro h1{
+        text-align: center;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    input{
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+    input:focus{
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 8px rgba(102,126,234,0.4);
+    }
+    button{
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: #667eea;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover{
+        background: #5563d6;
+        transform: translateY(-2px);
+    }
+    button:active{
+        transform: translateY(0);
+    }
+    </style>
+</head>
+<body>
+    <div class="cartao_cadastro">
+        <h1>Criar Conta</h1>
+     <input type="text" id="email" placeholder="email">
+     <input type="password" id="senha" placeholder="senha">
+     <input type="password" id="confirmar_senha" placeholder="confirmar senha">
+     <button id="enviar">Criar Conta</button>
+     </div>
+
+     <script>
+        document.getElementById("enviar").addEventListener("click", function(){
+        let email = document.getElementById("email").value
+        let senha = document.getElementById("senha").value
+        let confirmar_senha = document.getElementById("confirmar_senha").value 
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
+        if(!(regex.test(email))){
+                // Deixar mais bonitinho
+                alert("Email invalido")
+            }
+        if(senha !== confirmar_senha){
+                // Deixar mais bonitinho
+                alert("Senhas divergente")
+            }
+        //Trocar isso para um sistema de expressão regular assim como o email
+        if(senha.includes(" ")){
+            alert("A senha contem um espaço")
+        }else if(senha.trim() === ""){
+            alert("Senha em branco");
+        }
+        if(regex.test(email) && senha == confirmar_senha){
+            window.location.href="file:///c%3A/Users/gusta/OneDrive/%C3%81rea%20de%20Trabalho/IA/Bots/ProjetcTest/solicitacao/login.html"
+        }
+    })
+
+
+
+     </script>
+</body>
+</html>
