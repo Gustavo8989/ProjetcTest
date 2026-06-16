@@ -76,31 +76,46 @@
      </div>
 
      <script>
-        document.getElementById("enviar").addEventListener("click", function(){
-        let email = document.getElementById("email").value
-        let senha = document.getElementById("senha").value
-        let confirmar_senha = document.getElementById("confirmar_senha").value 
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
-        if(!(regex.test(email))){
-                // Deixar mais bonitinho
-                alert("Email invalido")
+        async function enviar_dados(){
+            document.getElementById("enviar").addEventListener("click", function(){
+            let email = document.getElementById("email").value
+            let senha = document.getElementById("senha").value
+            let confirmar_senha = document.getElementById("confirmar_senha").value 
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
+            if(!(regex.test(email))){
+                    // Deixar mais bonitinho
+                    alert("Email invalido")
+                }
+            if(senha !== confirmar_senha){
+                    // Deixar mais bonitinho
+                    alert("Senhas divergente")
+                }
+            //Trocar isso para um sistema de expressão regular assim como o email
+            if(senha.includes(" ")){
+                alert("A senha contem um espaço")
+            }else if(senha.trim() === ""){
+                alert("Senha em branco");
             }
-        if(senha !== confirmar_senha){
-                // Deixar mais bonitinho
-                alert("Senhas divergente")
+            if(regex.test(email) && senha == confirmar_senha){
+                window.location.href="file:///c%3A/Users/gusta/OneDrive/%C3%81rea%20de%20Trabalho/IA/Bots/ProjetcTest/solicitacao/login.html"
             }
-        //Trocar isso para um sistema de expressão regular assim como o email
-        if(senha.includes(" ")){
-            alert("A senha contem um espaço")
-        }else if(senha.trim() === ""){
-            alert("Senha em branco");
-        }
-        if(regex.test(email) && senha == confirmar_senha){
-            window.location.href="file:///c%3A/Users/gusta/OneDrive/%C3%81rea%20de%20Trabalho/IA/Bots/ProjetcTest/solicitacao/login.html"
-        }
-    })
+        })
+        // Enviado os dados para um banco de dados em python
+        const responsta = await fetch('http://127.0.0.1:5000/salvar', {
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            // Transformando os dados em json
+            body: JSON.stringify({
+                email: email,
+                senha: senha,
+            })
 
-
+        });
+        const resultado = await responsta.json();
+        alert(resultado.mensagem);
+}
 
      </script>
 </body>
