@@ -3,23 +3,30 @@ from flask_cors import CORS
 import sqlite3 
 
 
-conexao = sqlite3.connect("requis.db")
+app = Flask(__name__)
+CORS(app)
+@app.route('/salvar',methods=['POST'])
+def salvar_dados():
+   dados = request.get_json()
+   email = dados.get('email')
+   senha = dados.get('senha')
+   conexao = sqlite3.connect("requis.db")
+   cursor = conexao.cursor()
 
-cursor = conexao.cursor()
+   cursor.execute("""
+   CREATE TABLE IF NOT EXISTS contas(
+               id INTEGER PRIMARY KEY AUTOINCREMENT,
+               email TEXT NOT NULL,
+               senha_hash TEXT NOT NULL
+                  )
+   """)
+
+   cursor.execute('INSERT INTO contas (email, senha) VALUES (?, ?, ?)',
+                  (email,senha))
 
 
-
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS funcionarios(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT NOT NULL,
-            senha_hash TEXT NOT NULL
-               )
-""")
-
-conexao.commit()
+   conexao.commit()
+   conexao.close()
 
 
-
-# Pegar os dados do Javascript
-# 
+# A segurança das contas vai utilizar um sistema basico hash de senha
