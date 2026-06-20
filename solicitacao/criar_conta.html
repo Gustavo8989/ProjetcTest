@@ -77,14 +77,14 @@
 
      <script>
         async function enviar_dados(){
-            document.getElementById("enviar").addEventListener("click", function(){
+            document.getElementById("enviar").addEventListener("click", async function(){
             let email = document.getElementById("email").value
             let senha = document.getElementById("senha").value
             let confirmar_senha = document.getElementById("confirmar_senha").value 
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
             if(!(regex.test(email))){
                     // Deixar mais bonitinho
-                    alert("Email invalido")
+                    alert("Email invalido") 
                 }
             if(senha !== confirmar_senha){
                     // Deixar mais bonitinho
@@ -96,12 +96,8 @@
             }else if(senha.trim() === ""){
                 alert("Senha em branco");
             }
-            if(regex.test(email) && senha == confirmar_senha){
-                window.location.href="login.html"
-            }
-        })
-        // Enviado os dados para um banco de dados em python
-        /*const responsta = await fetch('http://127.0.0.1:5000/salvar', {
+            // Enviado os dados para um banco de dados em python
+            const responsta = await fetch('http://127.0.0.1:5000/salvar', {
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -113,9 +109,15 @@
             })
 
         });
-        const resultado = await responsta.json();
-        alert(resultado.mensagem);*/
+            const resultado = await responsta.json();
+            alert(resultado.mensagem);
+
+            if(regex.test(email) && senha == confirmar_senha){
+                window.location.href="login.html"
+            }
+        })
 }
+        enviar_dados();
 
      </script>
 </body>

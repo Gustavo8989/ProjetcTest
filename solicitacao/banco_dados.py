@@ -3,17 +3,20 @@ from flask_cors import CORS
 import sqlite3 
 
 
-app = Flask(__name__)
-CORS(app)
-@app.route('/salvar',methods=['POST'])
-def salvar_dados():
-   dados = request.get_json()
-   email = dados.get('email')
-   senha = dados.get('senha')
-   conexao = sqlite3.connect("requis.db")
-   cursor = conexao.cursor()
+from flask import Flask, request
 
-   cursor.execute("""
+app = Flask(__name__)
+
+@app.route("/salvar", methods=["POST"])
+def salvar_dados():
+    dados = request.get_json()
+
+    email = dados["email"]
+    senha = dados["senha"]
+    conexao = sqlite3.connect("requis.db")
+    cursor = conexao.cursor()
+
+    cursor.execute("""
    CREATE TABLE IF NOT EXISTS contas(
                id INTEGER PRIMARY KEY AUTOINCREMENT,
                email TEXT NOT NULL,
@@ -21,12 +24,12 @@ def salvar_dados():
                   )
    """)
 
-   cursor.execute('INSERT INTO contas (email, senha) VALUES (?, ?, ?)',
+    cursor.execute('INSERT INTO contas (email, senha) VALUES (?, ?, ?)',
                   (email,senha))
 
 
-   conexao.commit()
-   conexao.close()
+    conexao.commit()
+    conexao.close()
 
-
+app.run(debug=True)
 # A segurança das contas vai utilizar um sistema basico hash de senha
