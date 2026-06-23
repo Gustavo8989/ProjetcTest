@@ -104,18 +104,29 @@
 
     <script>
         // Criando um validação simples de Email
-        document.getElementById("Enviar").addEventListener("click",function(){
-            var email = document.getElementById("email").value
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
-            if(!(regex.test(email))){
-                // Deixar mais bonitinho
-                alert("Email invalido")
-            }
-            else{
+        async function login(){
+          document.getElementById("Enviar").addEventListener("click", async function(){
+              let email_login = document.getElementById("email").value
+              let senha_login = document.getElementById("senha").value
+              const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
+              const conta = await fetch ('http://127.0.0.1:5000/salvar')
+              const {email,senha} = await conta.json()
+              if(!(regex.test(email))){
+                  // Deixar mais bonitinho
+                  alert("Email invalido")
+              }
+              else{
+                  window.location.href="file:///c%3A/Users/gusta/OneDrive/%C3%81rea%20de%20Trabalho/IA/Bots/ProjetcTest/solicitacao/pagina_inicial.html"
+              }
+              if(email_login && senha_login == email && senha){
                 window.location.href="file:///c%3A/Users/gusta/OneDrive/%C3%81rea%20de%20Trabalho/IA/Bots/ProjetcTest/solicitacao/pagina_inicial.html"
-            }
-        })
-        
+              }
+              else{
+                alert("Email ou Senha errado tente novamente")
+              }
+          })
+      }
+      login()
     </script>
   </body>
 </html>

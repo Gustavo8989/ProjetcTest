@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3 
-
-
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -17,19 +15,20 @@ def salvar_dados():
     cursor = conexao.cursor()
 
     cursor.execute("""
-   CREATE TABLE IF NOT EXISTS contas(
+    CREATE TABLE IF NOT EXISTS contas(
                id INTEGER PRIMARY KEY AUTOINCREMENT,
                email TEXT NOT NULL,
-               senha_hash TEXT NOT NULL
+               senha TEXT NOT NULL
                   )
    """)
 
-    cursor.execute('INSERT INTO contas (email, senha) VALUES (?, ?, ?)',
+    cursor.execute('INSERT INTO contas (email, senha) VALUES (?, ?)',
                   (email,senha))
 
 
     conexao.commit()
     conexao.close()
+    return jsonify({"mensagem":"Conta criado com sucesso"})
 
 app.run(debug=True)
 # A segurança das contas vai utilizar um sistema basico hash de senha
