@@ -97,7 +97,7 @@
       <h1>Validando Email e Senha</h1> 
       <input type="text" id="email" placeholder="Email">
       <input type="password" id="senha" placeholder="Senha">
-      <button id="Enviar">Login</button> 
+      <button id="Login">Login</button> 
       <a href="" class="criar-conta">Criar Conta</a>
       
     </div>
@@ -105,24 +105,30 @@
     <script>
         // Criando um validação simples de Email
         async function login(){
-          document.getElementById("Enviar").addEventListener("click", async function(){
+          document.getElementById("Login").addEventListener("click", async function(){
               let email_login = document.getElementById("email").value
               let senha_login = document.getElementById("senha").value
               const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ 
-              const conta = await fetch ('http://127.0.0.1:5000/salvar')
-              const {email,senha} = await conta.json()
-              if(!(regex.test(email))){
+              const resposta = await fetch ('http://127.0.0.1:5000/contas',{
+                method:"POST",
+                headers: {
+                  "Content-Type":"application/json"
+                },
+                body: JSON.stringify({
+                  email: email,
+                  senha:senha,
+                })
+              })
+              if(!(regex.test(email_login))){
                   // Deixar mais bonitinho
                   alert("Email invalido")
               }
               else{
                   window.location.href="file:///c%3A/Users/gusta/OneDrive/%C3%81rea%20de%20Trabalho/IA/Bots/ProjetcTest/solicitacao/pagina_inicial.html"
               }
-              if(email_login && senha_login == email && senha){
+              // Vai ser enviado o email e a senha que o usuario digitou na tela de login para o banco de dados em flask assim ela vai comparar e retornar true ou false
+              if(resposta.Sucesso){
                 window.location.href="file:///c%3A/Users/gusta/OneDrive/%C3%81rea%20de%20Trabalho/IA/Bots/ProjetcTest/solicitacao/pagina_inicial.html"
-              }
-              else{
-                alert("Email ou Senha errado tente novamente")
               }
           })
       }
