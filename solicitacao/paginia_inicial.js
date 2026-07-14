@@ -5,11 +5,30 @@ function index(){
 
 }
 */
+function botao_select(){
+  const botao = document.querySelector("div-btn");
+  if(botao.classList.contains("active")){
+    console.log(botao.textContent.trim())
+  }
+}
 
 
-function toggle(el) {
-      el.classList.toggle('active');
+// Identificar quais botão foram apertado (DIVISÃO)
+function toggle(botao){
+      botao.classList.toggle("selecionado");
     }
+
+
+// Identificar quais botão foram apertado  (Urgência)
+
+function Identificacao(){
+  const solicitante = document.getElementById("solicitante").value;
+  const departamento = document.getElementById("departamento").value;
+  const centro_custo = document.getElementById("centro_custo").value;
+  const data = document.getElementById("data").value;
+  const justificativa = document.getElementById("solicitante").value;
+
+}
 
 function urgencia(el, level) {
       document.querySelectorAll('.urgencia-btn').forEach(b => b.classList.remove('active'));
@@ -31,4 +50,16 @@ function submitForm() {
       const banner = document.getElementById('success');
       banner.style.display = 'flex';
       setTimeout(() => { banner.style.display = 'none'; }, 4000);
-    }
+    } 
+
+
+  
+
+
+
+  
+
+
+
+
+  
