@@ -85,16 +85,20 @@
             if(!(regex.test(email))){
                     // Deixar mais bonitinho
                     alert("Email invalido") 
+                    return;
                 }
             if(senha !== confirmar_senha){
                     // Deixar mais bonitinho
                     alert("Senhas divergente")
+                    return;
                 }
             //Trocar isso para um sistema de expressão regular assim como o email
             if(senha.includes(" ")){
                 alert("A senha contem um espaço")
+                return;
             }else if(senha.trim() === ""){
                 alert("Senha em branco");
+                return;
             }
             // Enviado os dados para um banco de dados em python
             const responsta = await fetch('http://127.0.0.1:5000/salvar', {
@@ -109,16 +113,15 @@
             })
 
         });
-            const resultado = await responsta.json();
-            alert(resultado.mensagem);
-
-            if(regex.test(email) && senha == confirmar_senha){
-                window.location.href="login.html"
+        // Vendo se o servidor quebrou
+            if(!responsta.ok){
+                alert("Erro de comunicação com o servidor");
+                return;
             }
+            window.location.href = "./login.html" 
         })
-}
-        enviar_dados();
-
+    }
+    enviar_dados()
      </script>
 </body>
 </html>

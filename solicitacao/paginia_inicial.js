@@ -30,6 +30,21 @@ function Identificacao(){
 
 }
 
+// Itens solicitados
+
+function itens(){
+  // Coletando os itens
+  const item1 = document.getElementById("item1").value;
+  const item2 = document.getElementById("item2").value;
+  const item3 = document.getElementById("item3").value;
+  // Unidades(sistema de medidas)
+  
+
+  // Quantidade
+}
+
+
+
 function urgencia(el, level) {
       document.querySelectorAll('.urgencia-btn').forEach(b => b.classList.remove('active'));
       el.classList.add('active');
@@ -51,15 +66,3 @@ function submitForm() {
       banner.style.display = 'flex';
       setTimeout(() => { banner.style.display = 'none'; }, 4000);
     } 
-
-
-  
-
-
-
-  
-
-
-
-
-  

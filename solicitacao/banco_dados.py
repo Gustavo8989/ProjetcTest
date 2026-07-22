@@ -60,4 +60,5 @@ def get_data():
 
 
 app.run(debug=True)
+CORS(app)
 # A segurança das contas vai utilizar um sistema basico hash de senha
