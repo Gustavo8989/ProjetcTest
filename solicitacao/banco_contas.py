@@ -58,7 +58,6 @@ def get_data():
         'Mensagem':'Login realizado com sucesso'
     })
 
-
 app.run(debug=True)
 CORS(app)
 # A segurança das contas vai utilizar um sistema basico hash de senha
