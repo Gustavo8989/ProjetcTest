@@ -21,34 +21,43 @@ function toggle(botao){
 
 // Identificar quais botão foram apertado  (Urgência)
 
-function Identificacao(){
-  const solicitante = document.getElementById("solicitante").value;
-  const departamento = document.getElementById("departamento").value;
-  const centro_custo = document.getElementById("centro_custo").value;
-  const data = document.getElementById("data").value;
-  const justificativa = document.getElementById("solicitante").value;
+function get_dados(){
+  const dados = {
+  solicitante = document.getElementById("solicitante").value,
+  departamento = document.getElementById("departamento").value,
+  centro_custo = document.getElementById("centro_custo").value,
+  data = document.getElementById("data").value,
+  justificativa = document.getElementById("solicitante").value,
+  item1 = document.getElementById("item1").value,
+  item2 = document.getElementById("item2").value,
+  item3 = document.getElementById("item3").value,
+  item_a_mais = document.getElementById("mais_item").value,
 
+  }
+  // Mandando informações para o servidor
+    fetch("/salvar",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(dados)
+    })
+    .then(response => response.json())
+    .then(resultado => {
+      console.log(resultado)
+      alert("Dados enviado com sucesso!! ");
+    })
+    .catch(erro =>{
+      console.erro("Erro:", erro);
+      alert("Erro ao enviar o fomulario")
+    });
 }
-
-// Itens solicitados
-
-function itens(){
-  // Coletando os itens
-  const item1 = document.getElementById("item1").value;
-  const item2 = document.getElementById("item2").value;
-  const item3 = document.getElementById("item3").value;
-  // Unidades(sistema de medidas)
-  
-
-  // Quantidade
-}
-
-
 
 function urgencia(el, level) {
       document.querySelectorAll('.urgencia-btn').forEach(b => b.classList.remove('active'));
       el.classList.add('active');
     }
+
 function addRow() {
       rowCount++;
       const tbody = document.getElementById('items-body');
@@ -57,12 +66,7 @@ function addRow() {
         <td class="num">${rowCount}</td>
         <td><input type="text" placeholder="Descrição do item" /></td>
         <td><input type="text" placeholder="Un, Kg…" /></td>
-        <td><input type="number" placeholder="0" min="0" /></td>
-      `;
+        <td><input type="number" placeholder="0" min="0" /></td>`;
       tbody.appendChild(tr);
     }
-function submitForm() {
-      const banner = document.getElementById('success');
-      banner.style.display = 'flex';
-      setTimeout(() => { banner.style.display = 'none'; }, 4000);
-    } 
+

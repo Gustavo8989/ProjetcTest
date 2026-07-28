@@ -174,7 +174,7 @@
           <tr><td class="num">3</td><td><input id="item3" type="text" placeholder="Descrição do item" /></td><td><input type="text" placeholder="Un, Kg…" /></td><td><input type="number" placeholder="0" min="0" /></td></tr>
         </tbody>
       </table>
-      <button class="add-row" onclick="addRow()"><i class="ti ti-plus"></i> Adicionar item</button>
+      <button class="add-row" onclick="addRow()" id="mais_item"><i class="ti ti-plus"></i> Adicionar item</button>
     </div>
 
     <div class="card">
@@ -208,7 +208,7 @@
         <label>Assinatura do Solicitante:</label>
         <input type="text" placeholder="Nome / Rubrica" />
       </div>
-      <button class="btn-submit" onclick="submitForm()">
+      <button class="btn-submit" onclick="enviar()">
         <i class="ti ti-send"></i> Enviar solicitação
       </button>
     </div>
@@ -216,9 +216,7 @@
     <div class="success-banner" id="success">
       <i class="ti ti-circle-check"></i> Solicitação enviada com sucesso!
     </div>
-
   </div>
-
   <script src="paginia_inicial.js"></script>
 </body>
 </html>
