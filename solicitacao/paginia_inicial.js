@@ -12,15 +12,6 @@ function botao_select(){
   }
 }
 
-
-// Identificar quais botão foram apertado (DIVISÃO)
-function toggle(botao){
-      botao.classList.toggle("selecionado");
-    }
-
-
-// Identificar quais botão foram apertado  (Urgência)
-
 function get_dados(){
   const dados = {
   solicitante = document.getElementById("solicitante").value,
